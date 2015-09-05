@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,16 +41,58 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+// .controller('PlaylistsCtrl', function($scope) {
+//   $scope.playlists = [
+//     { title: 'Reggae', id: 1 },
+//     { title: 'Chill', id: 2 },
+//     { title: 'Dubstep', id: 3 },
+//     { title: 'Indie', id: 4 },
+//     { title: 'Rap', id: 5 },
+//     { title: 'Cowbell', id: 6 }
+//   ];
+// })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+// .controller('PlaylistCtrl', function($scope, $stateParams) {
+// })
+
+.controller('MapCtrl', ['$scope', function($scope) {
+// Code will be here
+}])
+
+.directive('map', function() {
+    return {
+        restrict: 'A',
+        link:function(scope, element, attrs){
+          var zValue = scope.$eval(attrs.zoom);
+          var lat = scope.$eval(attrs.lat);
+          var lng = scope.$eval(attrs.lng);
+
+
+          var myLatlng = new google.maps.LatLng(lat,lng),
+          mapOptions = {
+              zoom: zValue,
+              center: myLatlng,
+              disableDefaultUI: true
+          },
+          map = new google.maps.Map(element[0],mapOptions),
+          marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:true,
+                scrollWheel: false,
+                scaleControl: false
+
+                
+          });
+
+
+        }
+
+    }
+    google.maps.event.addListener(marker, 'dragend', function(evt){
+    console.log('Current Latitude:',evt.latLng.lat(),'Current Longitude:',evt.latLng.lng())
+     scope.$parent.user.latitude = evt.latLng.lat();
+    scope.$parent.user.longitude = evt.latLng.lng();
+    scope.$apply();
+});
 });
