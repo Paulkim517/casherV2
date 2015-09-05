@@ -1,6 +1,6 @@
 <ion-view view-title="Casher">
   <ion-content>
-    <map center="current location" zoom="13" disable-default-u-i="true">
+    <map center="current location" zoom="13" disable-default-u-i="true" id="map">
       <marker ng-repeat="bar in bars | filter:q as results" position="{{bar.lat}}, {{bar.lng}}" on-click="show(event, bar)"></marker>
 
       <info-window position="current-location" visible="true">
