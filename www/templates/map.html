@@ -1,15 +1,15 @@
- 	<ion-view view-title="Casher">
+<ion-view view-title="Casher">
   <ion-content>
-    <!-- <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-      </ion-item>
-    </ion-list> -->
-    <div>
-            <div id="map" lat="37.773972" lng="-122.431297" zoom="13" map> 
-            </div>
+    <map center="current location" zoom="13" disable-default-u-i="true">
+      <marker ng-repeat="bar in bars | filter:q as results" position="{{bar.lat}}, {{bar.lng}}" on-click="show(event, bar)"></marker>
 
-            <div width="100%" height="50px"class="list list-inset" style="margin:0px auto;">
+      <info-window position="current-location" visible="true">
+          <span>Current Location</span>
+      </info-window>
+
+
+    </map>
+     <div width="100%" height="50px"class="list list-inset" style="margin:0px auto;">
                 
                 <label class="item item-input">
                     <input type="text" ng-model="user.desc" placeholder="How Much Cash?" class = "">
@@ -20,7 +20,5 @@
                 </button>
             </div>
         </div>
-
   </ion-content>
 </ion-view>
-

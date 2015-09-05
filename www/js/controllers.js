@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ionic'])
+angular.module('starter.controllers', ['ionic','ngMap'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,58 +41,35 @@ angular.module('starter.controllers', ['ionic'])
   };
 })
 
-// .controller('PlaylistsCtrl', function($scope) {
-//   $scope.playlists = [
-//     { title: 'Reggae', id: 1 },
-//     { title: 'Chill', id: 2 },
-//     { title: 'Dubstep', id: 3 },
-//     { title: 'Indie', id: 4 },
-//     { title: 'Rap', id: 5 },
-//     { title: 'Cowbell', id: 6 }
-//   ];
-// })
+// map controller
 
-// .controller('PlaylistCtrl', function($scope, $stateParams) {
-// })
+.controller('MapCtrl', ['$scope', '$stateParams', '$http', '$timeout', function($scope, $stateParams, $http, $timeout) {
 
-.controller('MapCtrl', ['$scope', function($scope) {
-// Code will be here
-}])
+  // customize bar pin style on view
+  $scope.image = {
+    url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+    size: [20, 32],
+    origin: [0,0],
+    anchor: [0, 32]
+  };
 
-.directive('map', function() {
-    return {
-        restrict: 'A',
-        link:function(scope, element, attrs){
-          var zValue = scope.$eval(attrs.zoom);
-          var lat = scope.$eval(attrs.lat);
-          var lng = scope.$eval(attrs.lng);
+  $scope.$on('mapInitialized', function (event, map) {
+            $scope.objMapa = map;
+         });
 
 
-          var myLatlng = new google.maps.LatLng(lat,lng),
-          mapOptions = {
-              zoom: zValue,
-              center: myLatlng,
-              disableDefaultUI: true
-          },
-          map = new google.maps.Map(element[0],mapOptions),
-          marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                draggable:true,
-                scrollWheel: false,
-                scaleControl: false
+  $scope.show = function (event, bar) {
+            var infowindow = new google.maps.InfoWindow();
+            var center = new google.maps.LatLng(bar.lat, bar.lng);
 
-                
-          });
+          
 
+            infowindow.setPosition(center);
+            infowindow.open($scope.objMapa);
+            $scope.objMapa.setZoom(15);
+            $scope.objMapa.setCenter(center);
+         };
 
-        }
+  // render all pins and info windows to the map based on the returned data
 
-    }
-    google.maps.event.addListener(marker, 'dragend', function(evt){
-    console.log('Current Latitude:',evt.latLng.lat(),'Current Longitude:',evt.latLng.lng())
-     scope.$parent.user.latitude = evt.latLng.lat();
-    scope.$parent.user.longitude = evt.latLng.lng();
-    scope.$apply();
-});
-});
+}]);
