@@ -72,4 +72,17 @@ angular.module('starter.controllers', ['ionic','ngMap'])
 
   // render all pins and info windows to the map based on the returned data
 
-}]);
+}])
+
+.controller('LoginCtrl', function($scope) {
+    $scope.data = {};
+ 
+    $scope.login = function() {
+        console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
+    }
+});
+
+
+
+
+
