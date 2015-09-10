@@ -62,6 +62,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('app.payment', {
+    url: '/payment',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/payment.html'
+      }
+    }
+  })
   .state('app.nextSteps', {
     url: '/nextSteps',
     views: {

@@ -46,12 +46,12 @@ angular.module('starter.controllers', ['ionic','ngMap'])
 .controller('MapCtrl', ['$scope', '$stateParams', '$http', '$timeout', function($scope, $stateParams, $http, $timeout) {
 
   // customize bar pin style on view
-  $scope.image = {
-    url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-    size: [20, 32],
-    origin: [0,0],
-    anchor: [0, 32]
-  };
+  // $scope.image = {
+  //   url: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld=1|37455C|FFFFFF',
+  //   size: [20, 32],
+  //   origin: [0,0],
+  //   anchor: [0, 32]
+  // };
 
   $scope.$on('mapInitialized', function (event, map) {
             $scope.objMapa = map;
