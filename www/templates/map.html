@@ -1,24 +1,28 @@
 <div class="font">
-<ion-view view-title="Casher" style="text-align:left">
+<ion-view view-title="Casher">
   <ion-content>
-  <div width="100%" height="60px"class="list list-inset" style="margin:0px auto;">
-                <div class="" id="buttonTab" style="border-bottom: 1px solid lightgray">
+  <!-- choose the type of bills you want and how many -->
+  <div width="100%" class="list list-inset" style="margin:0px auto;" height="0px" >
+                <div class="" id="buttonTab" style="border-bottom: 1px solid lightgray" >
             <div class="button-bar">
-                <a class="button button-small" ng-click="handlerButtonClick('account_detail')"
-                   ng-class="{'button_active':activeContentArea==='account_detail'}">1's</a>
-                <a class="button button-small" ng-click="handlerButtonClick('retalted_transactions')"
-                   ng-class="{'button_active':activeContentArea==='retalted_transactions'}">5's</a>
-                <a class="button button-small" ng-click="handlerButtonClick('dispute')"
-                   ng-class="{'button_active':activeContentArea==='dispute'}">10's</a>
-                <a class="button button-small" ng-click="handlerButtonClick('notes')"
-                   ng-class="{'button_active':activeContentArea==='notes'}">20's</a>
+                <a class="button button-small" ng-click="handlerButtonClick('1')"
+                   ng-class="{'button_active':activeContentArea==='1'}">1's</a>
+                <a class="button button-small" ng-click="handlerButtonClick('5')"
+                   ng-class="{'button_active':activeContentArea==='5'}">5's</a>
+                <a class="button button-small" ng-click="handlerButtonClick('10')"
+                   ng-class="{'button_active':activeContentArea==='10'}">10's</a>
+                <a class="button button-small" ng-click="handlerButtonClick('20')"
+                   ng-class="{'button_active':activeContentArea==='20'}">20's</a>
             </div>
 
 
         </div>
 
     <map center="current location" zoom="13" disable-default-u-i="true" id="map">
-      <marker ng-repeat="bar in bars | filter:q as results" position="current location" on-click="show(event, bar)"></marker>
+      
+      <info-window position="{{atm.lat}}, {{atm.lng}}" visible="true">
+      
+      <marker ng-repeat="atm in atms | filter:q as results" position="{{atm.lat}}, {{atm.lng}}" on-click="show(event, atm)"></marker>
 
       <info-window position="current-location" visible="true">
           <span>Current Location</span>
@@ -28,12 +32,12 @@
     
 
     </map>
-     <div width="100%" height="60px"class="list list-inset" style="margin:0px auto;">
+     <div width="100%"class="list list-inset" style="margin:0px auto;">
               <label class="item item-input">
-                   <input type="text" ng-model="user.desc" placeholder="Your total amount" class = "">
+                <!-- planning to add feature that counts how many clicks and adds that value -->
+                   <input type="text" ng-model="user.desc" placeholder="Your total amount">
               </label>
-                
-
+              <!-- user can request for "atm" to come to current location -->
                 <button class="button button-full button-positive" ng-click="saveDetails()" style="background:#18bc9c">
                     Get Cash
                 </button>

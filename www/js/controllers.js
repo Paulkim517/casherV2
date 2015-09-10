@@ -57,12 +57,24 @@ angular.module('starter.controllers', ['ionic','ngMap'])
             $scope.objMapa = map;
          });
 
+  // seed data of "atms"
 
-  $scope.show = function (event, bar) {
+$scope.atms = [
+   {'id': 1, name: 'Jon Harlen', lat:  37.7960398 , lng: -122.4021932 },
+   {'id': 2, name: 'Greg Onza', lat: 37.7952 , lng: -122.4028 },
+   {'id': 3, name: 'Paul Kim', lat: 37.808674 , lng: -122.4098 },
+   {'id': 4, name: 'Josh Baker', lat: 37.794138 , lng: -122.407791},
+   {'id': 5, name: 'Esben Smith', lat: 37.795313 , lng: -122.393757}
+  ]; 
+  
+
+  $scope.show = function (event, atm) {
             var infowindow = new google.maps.InfoWindow();
-            var center = new google.maps.LatLng(bar.lat, bar.lng);
+            var center = new google.maps.LatLng(atm.lat, atm.lng);
 
-          
+          infowindow.setContent(
+                '<p>' + atm.name + '</p>'
+            );
 
             infowindow.setPosition(center);
             infowindow.open($scope.objMapa);

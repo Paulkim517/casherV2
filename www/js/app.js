@@ -62,6 +62,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('app.nextSteps', {
+    url: '/nextSteps',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/nextSteps.html',
+      }
+    }
+  })
     .state('map', {
             url: '/map',
             templateUrl: 'templates/map.html',
