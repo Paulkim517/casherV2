@@ -27,15 +27,28 @@
         </ion-item>
       <ion-list>
         <ion-item menu-close href="#/app/map">
-          Home
+        <i class="icon ion-home"></i>      
+                Home
         </ion-item>
-        <ion-item menu-close href="#/app/search">
+        <ion-item menu-close href="#/app/help">
+        <i class="icon ion-help"></i>
           Help
         </ion-item>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close href="#/app/settings">
+        <i class="icon ion-gear-a"></i>
+          Settings
+        </ion-item>
+       <ion-item menu-close href="#/app/map">
+         <i class="icon ion-card"></i>
+            Payments
+         </a>
+        </ion-item>
+         <ion-item menu-close ng-click="login()">
+         <i class="icon ion-key"></i>
           Login
         </ion-item>
         <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">ATM Mode</ion-toggle>
+        <i class="ion-social-usd"></i>
       </ion-list>
     </ion-content>
   </ion-side-menu>
